@@ -1,0 +1,86 @@
+<!-- Highlights 2 Col -->
+<section class="bg-llgrey relative" id="{{ section.heading | remove: ' ' | slice: 0,10 }}">
+
+    <div class="px-4 md:max-w-expBody justify-between mx-auto py-8 lg:py-16 relative">
+        
+        <!-- Title Section -->
+        {% if section.heading == nil or section.heading == empty%}
+        {% else %}
+        <h4 class="w-full text-black font-bold text-base mb-4 font-sans text-center align-middle justify-center">{{ section.heading }}</h4>
+        {% endif %}
+        {% if section.subheading == nil or section.subheading == empty%}
+        {% else %}
+        <div class="w-full text-black font-bold text-xl lg:text-5xl mb-12 font-sans text-center align-middle justify-center leading-exp">
+                {{ section.subheading }}
+        </div>
+        {% endif %}
+
+        <!-- Standard Two-Col -->
+        {% for item in section.highlights %}
+
+            {% if item.align-left %} 
+                <div class="flex -mx-4 twocol highlight flex-wrap"> 
+                    <!-- Left -->
+                    <div class="w-full sm:w-6/12 px-4 my-4 flex items-center">
+                        <div class="w-full relative">
+                            {% if item.icon == nil  and item.icon == empty %}
+                                <div class="w-full text-center bgImg" style="
+                                    overflow: hidden;
+                                ">
+                                <img src="{{ item.background | absolute_url }}" class="imgbg mx-auto">
+                                </div>
+                            {% else %}
+                            <img src="{{ item.icon | absolute_url }}" class="absolute pt-2 right-0 w-4/12 z-10">
+                            <div class="w-12/12 sm:w-10/12 bgImg" style="
+                                overflow: hidden;
+                            ">
+                            <img src="{{ item.background | absolute_url }}" class="imgbg">
+                            </div>
+                            {% endif %}
+                        </div> 
+                    </div>
+                    <!-- Right -->
+                    <div class="w-full sm:w-6/12 px-4 my-4">
+                        <div class="w-full my-4 pt-4 pb-6 px-6 relative">
+                            <h3 class="text-2xl sm:text-3xl md:text-xl font-semibold font-sans mb-3 text-red">{{ item.headline }}</h3>
+                            <p class="text-xl font-light leading-normal my-2">{{ item.description }}</p>
+                        </div> 
+                    </div>
+                </div>
+            {% else %}
+                <div class="flex -mx-4 twocol highlight flex-wrap-reverse md:flex-wrap"> 
+                    <!-- Left -->
+                    <div class="w-full sm:w-6/12 px-4 my-4">
+                        <div class="w-full my-4 pt-4 pb-6 px-6 relative">
+                            <h3 class="text-2xl sm:text-3xl md:text-xl font-semibold font-sans mb-3 text-red">{{ item.headline }}</h3>
+                            <p class="text-xl font-light leading-normal my-2">{{ item.description }}</p>
+                        </div> 
+                    </div>
+                    <!-- Right -->
+                    <div class="w-full sm:w-6/12 px-4 my-4 flex items-center">
+                        <div class="w-full relative text-right">
+                            {% if item.icon == nil  and item.icon == empty %}
+                            <div class="w-full float-right bgImg" style="
+                                overflow: hidden;
+                            ">
+                            <img src="{{ item.background | absolute_url }}" class="imgbg mx-auto" >
+                            </div>
+                            {% else %}
+                            <img src="{{ item.icon | absolute_url }}" class="absolute pt-2 left-0 w-4/12 z-10">
+                            <div class="w-10/12 float-right bgImg" style="
+                                overflow: hidden;
+                            ">
+                            <img src="{{ item.background | absolute_url }}" class="imgbg" >
+                            </div>
+                            {% endif %}
+                        </div> 
+                    </div>
+                </div>
+            {% endif %}
+
+        {% endfor %}
+        <!-- END Standard Two-Col -->
+    </div>
+
+</section>
+<!-- END Highlights 2 Col -->

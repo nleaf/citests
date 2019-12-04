@@ -1,0 +1,12 @@
+---
+layout: null
+---
+{% for post in site.resources %}
+
+    {% if post.download == nil or post.download == empty%}
+    {% else %}
+        <a href="{{ post.download }}">{{ post.title | escape }}"</a><br/>
+    {% endif %}
+
+{% unless forloop.last %}{% endunless %}
+  {% endfor %}

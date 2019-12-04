@@ -1,0 +1,129 @@
+{% comment %}
+Creates a breadcrumb from the page's URL
+{% endcomment %}
+
+<section class="relative sm:py-12 sm:pb-12">
+<article class="main flex flex-wrap lg:items-top mx-auto md:max-w-expBody justify-between relative px-4 mb-12">
+    <div class="body">
+        <div class="tabs"></div>
+        <div class="region region-content">
+            <div id="block-system-main" class="block block-system">
+                <div class="content">
+                    <div id="filetransfer" class="calculator">
+                        <form name="calculator" action="http://thecloudcalculator.com/calculators/file-transfer.html"
+                            method="post">
+                            <input type="hidden" name="ispost" value="1" />
+                            <div class="top-toolbar">
+                                <p class="text-xl font-light leading-normal my-4">
+                                    Ever wonder how much bandwidth is consumed when transferring a large video or
+                                    CAD file? Use this calculator to determine how much time and bandwidth it takes to
+                                    move large files around a network.
+                                </p>
+                            </div>
+                            <div id="calculator-options">
+                                <div class="options">
+                                    <h2>Options</h2>
+                                    <div class="option">
+                                        <label for="sizeincrement">Data Size Increment</label>
+                                        <select id="sizeincrement" name="sizeincrement">
+                                            <option>KB</option>
+                                            <option>MB</option>
+                                            <option selected>GB</option>
+                                            <option>TB</option>
+                                        </select>
+                                    </div>
+                                    <div class="option">
+                                        <label for="bandwitdhrate">Bandwidth Rate Increment</label>
+                                        <select id="bandwitdhrate" name="bandwitdhrate">
+                                            <option>Kbps</option>
+                                            <option selected>Mbps</option>
+                                            <option>Gbps</option>
+                                        </select>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="field reallylarge-field">
+                                    <label for="dataamount">Amount of Data</label>
+                                    <div id="dataamount-slider" class="slider"></div>
+                                    <input type="text" id="dataamount" name="dataamount" class="text decimal"
+                                        value="256" />
+                                    <div class='calc-tooltip-wrap'>
+                                        <a class='calc-tooltip' href='#'>
+                                            ?
+                                            <div class='calc-tooltip-data'>
+                                                <h3>Amount of Data:</h3>
+                                                <p>Enter the size of your total data set that needs transferred.</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="field reallylarge-field">
+                                    <label for="transferreate">Transfer Rate</label>
+                                    <div id="transferreate-slider" class="slider"></div>
+                                    <input type="text" id="transferreate" name="transferreate" class="text"
+                                        value="15" />
+                                    <div class='calc-tooltip-wrap'>
+                                        <a class='calc-tooltip' href='#'>
+                                            ?
+                                            <div class='calc-tooltip-data'>
+                                                <h3>Transfer Rate:</h3>
+                                                <p>Select the speed of your network based on avaliable capacity.</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="results">
+                                <p id="transfer-time">
+                                    Total Transfer Time <span class="result">###</span>
+                                </p>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+</article>
+</section>
+
+<link rel="stylesheet" href="{{ "/css/calcs/system.base.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/system.menus.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/system.messages.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/system.theme.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/jquery.ui.core.min.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/jquery.ui.theme.min.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/jquery.ui.button.min.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/jquery.ui.resizable.min.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/jquery.ui.dialog.min.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/jquery.ui.slider.min.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/field.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/hpsliders.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/node.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/search.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/user.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/views.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/ckeditor.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/ctools.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/tagclouds.css" | absolute_url }}">
+
+<link rel="stylesheet" href="{{ "/css/calcs/base.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/desktop.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "/css/calcs/mobile.css" | absolute_url }}">
+
+
+<script type="text/javascript" src="{{ "/js/calcs/respond.min.js?mnatia" | absolute_url }}"></script>
+<script type="text/javascript" src="{{ "/js/calcs/js_0gj6QcpfRH2jzTbCQqf7kEkm4MXY0UA_sRhwPc8jC1o.js" | absolute_url }}"></script>
+<script type="text/javascript" src="{{ "/js/calcs/js_SiJaW6ffoy7DzSKM8nVGXP9moBmWH070-tSnAJqTw70.js" | absolute_url }}"></script>
+<script type="text/javascript" src="{{ "/js/calcs/js_7SU08v1KGODbAmRjn2Q3fUSU5kw1wgZfk2BpHJodNpQ.js" | absolute_url }}"></script>
+
+<!-- File Transfer Spec -->
+<script type="text/javascript" src="{{ "/js/calcs/js_qoon6yj85atKsggiFOQzgZPHjZ0hdSsCQ2A89P_pcv8.js" | absolute_url }}"></script>
+
+<script type="text/javascript" src="{{ "/js/calcs/js_LWmYeu6bp3TYBcyA5XuIAhHEMJPQVFwPlNkK_iqm7do.js" | absolute_url }}"></script>
+<script type="text/javascript" src="{{ "/js/calcs/html2canvas.min.js" | absolute_url }}"></script>

@@ -1,0 +1,64 @@
+<!-- Featured Service -->
+<section class="relative sm:py-12 hpFeatured sm:pb-12 ">
+    <div class="flex flex-wrap lg:items-top mx-auto md:max-w-expBody justify-between relative px-4 mb-12 hiddensc">
+        <div class="w-full sm:w-1/2 mt-12 sm:pr-20 sm:mt-24">
+            <h3 class="text-red text-xl font-bold font-sans">{{section.featured_category}}</h3>
+            <h2 class="text-3xl sm:text-3xl md:text-5xl leading-exp font-black font-sans mt-1 mb-4">{{section.featured_title}}</h2>
+            <p class="text-xl font-light leading-normal my-4">{{section.featured_intro}}</p>
+            {% if section.featured_cta_link %}
+                {% assign apost = site.pages | where:"path",section.featured_cta_link  | first %}
+                <a href="{{ apost.url }}" class="w-full sm:w-56 inline-block bg-red px-5 py-3 text-bwhite font-bold text-base font-sans mt-8 ctaButton relative align-middle relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="7.737" height="11.791" viewBox="0 0 7.737 11.791" class="absolute right-0 mr-4 mt-2"><path d="M250.582,37.634l-5.829,5.9-1.908-1.92,3.925-3.976-3.925-3.975,1.908-1.92Z" transform="translate(-242.845 -31.738)" fill="#fdfdfd"/></svg>
+                    {{section.featured_cta_text}}
+                </a>
+            {% endif %} 
+        </div>
+        <div class="w-full hidden sm:w-1/2 sm:pl-4 sm:flex">
+            <div class="w-1/2">
+                <img src="/uploads/ph_Containers.jpg"  class="mb-4 "/>
+                <img src="/uploads/ph_DataTraffic.jpg"  class="mb-4 "/>
+            </div>
+            <div class="w-1/2 clearfix">
+                <img src="/uploads/ph_ContainersLong.jpg"  class="float-right mt-16"/>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <div class="px-4 md:max-w-expBody justify-between mx-auto hiddensc">
+            <div class="flex -mx-4 flex-wrap">
+                {% for item in section.related_products %}
+                    {% if item.category == nil or item.category == empty%}
+                        <!-- Column Read More -->
+                        <div class="w-1/4 px-4 md:flex-wrap align-middle justify-center items-center md:flex-col hidden sm:flex">
+                            <h3 class="w-full block text-black text-2xl sm:text-3xl md:text-xl font-bold font-sans">{{ item.title }}</h3>
+                            {% if item.link %}
+                                {% assign apost = site.pages | where:"path",item.link  | first %}
+                                <a href="{{ item.link }}" class="w-full block bg-red px-5 py-3 text-bwhite font-bold text-base font-sans ctaButton mt-8 text-center">
+                                    {{ item.description }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <!-- Column -->
+                        <div class="flex-1 px-4 related">
+                            <h3 class="text-red font-bold text-base mb-6">{{ item.category }}</h3>
+                            
+                                <img src="{{ item.img }}" data-echo="{{ item.img }}" class="w-full"/>  
+                            
+                            <div class="bg-bwhite p-6">
+                                <h4 class="text-black text-2xl sm:text-3xl md:text-xl font-bold font-sans mb-4">{{ item.title }}</h4>
+                                <p class="text-base font-light my-4 hidden">{{ item.description }}</p>
+                                {% if item.link %}
+                                    {% assign apost = site.pages | where:"path",item.link  | first %}
+                                    <a href="{{item.link}}" class="text-red ctaLink text-base font-bold font-sans inline pb-1">Learn More</a>
+                                {% endif %} 
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <!-- END Related Products -->
+</section>
+<!-- END Featured Service -->

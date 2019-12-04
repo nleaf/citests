@@ -1,0 +1,50 @@
+---
+layout: default
+---
+
+{% comment %}
+	This layout is used to generate custom landing page layouts,
+	e.g index.md and about.md
+{% endcomment %}
+
+{% include services.html %}
+
+{% include news.html %}
+
+{% include partners.html %}
+
+{% include staff.html %}
+
+<h2>HERE!!! LANDING PAGE</h2>
+<script type="text/javascript">
+	// Fade-In Animations
+	var animateHTML = function() {
+	var elems;
+	var windowHeight;
+	function init() {
+		elems = document.querySelectorAll('.hiddensc');
+		windowHeight = window.innerHeight;
+		addEventHandlers();
+		checkPosition();
+	}
+	function addEventHandlers() {
+		window.addEventListener('scroll', checkPosition);
+		window.addEventListener('resize', init);
+	}
+	function checkPosition() {
+		for (var i = 0; i < elems.length; i++) {
+		var positionFromTop = elems[i].getBoundingClientRect().top;
+		if (positionFromTop - windowHeight <= 0) {
+			elems[i].className = elems[i].className.replace(
+			'hiddensc',
+			'fade-in-element'
+			);
+		}
+		}
+	}
+	return {
+		init: init
+	};
+	};
+	animateHTML().init();
+</script>

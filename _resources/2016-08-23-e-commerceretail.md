@@ -1,0 +1,10 @@
+---
+title: Industry - Ecommerce/Retail
+date: Tue, 23 Aug 2016 13:42:04 +0000
+download: http://bit.ly/2nUiCr8
+tags:
+- Info Sheets
+- eCommerce/Retail
+
+---
+Expedient tailors infrastructure as a service solutions for the eCommerce and retail industries, with a 100% service level agreement that ensures seamless digital purchases.

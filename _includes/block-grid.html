@@ -1,0 +1,29 @@
+<!-- Grid -->
+<section class="relative sm:py-12 sm:pb-12">
+
+    <div class="px-0 md:max-w-expBody justify-between mx-auto">
+        <div class="flex flex-wrap lg:flex-no-wrap mb-4 items-center">
+            {% for item in section.row %}
+                <div class="w-1/2 p-8 sm:px-4">
+                    {% if item.link == nil or item.link == empty%}
+                        <img src="{{ item.image| absolute_url }}" class="mx-auto h-auto w-full gs">
+                    {% else %}
+                        <a href="{{item.link}}" alt="{{item.label}}"><img src="{{ item.image| absolute_url }}" class="mx-auto h-auto w-full gs" data-tippy-content="Read Case Study"></a>
+                    {% endif %}
+                </div>
+            {% endfor %}
+    </div>
+
+</section>
+<!-- END Grid -->
+
+<!-- Img block JS -->
+<script src="https://unpkg.com/popper.js@1"></script>
+<script src="https://unpkg.com/tippy.js@4"></script>
+<script type="text/javascript">
+    // Popup Tips
+    tippy.setDefaults({
+        arrow: true,
+    })
+    tippy('[data-tippy-content]')
+</script>

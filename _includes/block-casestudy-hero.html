@@ -1,0 +1,17 @@
+<!-- Case Study Hero -->
+<div class="bg-cover bg-center pb-8 relative" >
+    <!-- Breadcrumbs -->
+        {% include breadcrumbs.html %}
+    <!-- END Breadcrumbs -->
+    <!-- <div class="absolute h-full w-full z-10 top-0 mt-20" style="background: -webkit-linear-gradient(top, rgba(255,255,255,1) 0%,rgba(255,255,255,0) 100%); "></div> -->
+    <div class="flex flex-wrap mb-4 lg:items-top mx-auto md:max-w-expBody pt-32 lg:pt-56 px-4 justify-between z-10 relative">
+            <!-- Text Intro -->
+            <div class="w-full md:w-1/2 flex-grow pr-2">
+                <img src="{{ section.icon | absolute_url }}" class="mx-auto h-16"/>
+                <h1 class="text-3xl sm:text-3xl md:text-exphl font-semibold leading-exp font-black font-sans my-6 text-center">{{section.heading}}</h1>
+                <p class="text-2xl md:text-hp font-light leading-snug text-center">{{section.subheading}}</p>
+                <div class="h-2 bg-red w-24 mt-12 mx-auto"></div>
+            </div>
+    </div>
+</div>
+<!-- END Case Study Hero -->
