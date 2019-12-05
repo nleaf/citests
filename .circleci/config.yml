@@ -22,7 +22,7 @@ jobs:
       - persist_to_workspace:
           root: ./
           paths:
-            - _site
+            - _site/.
   deploy:
     <<: *defaults
     docker:
