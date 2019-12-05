@@ -57,9 +57,9 @@ workflows:
   test-deploy:
     jobs:
       - build:
-          branches:
-            ignore:
-              - prod
+          filters:
+            branches:
+              only: master
       - deploy:
           requires:
             - build
