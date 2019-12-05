@@ -60,7 +60,7 @@ workflows:
           filters:
             branches:
               ignore:
-                - prod
+                - /.*/
       - deploy:
           requires:
             - build
