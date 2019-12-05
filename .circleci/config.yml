@@ -22,7 +22,7 @@ jobs:
       - persist_to_workspace:
           root: ./
           paths:
-            - _site/.
+            - _site/
   deploy:
     <<: *defaults
     docker:
@@ -39,11 +39,13 @@ jobs:
           at: ./
       - run:
           name: Copy attached work space to home directory
-          command: pwd
+          command: cp -a _site/. /home/circleci/repo/
       - run:
-          name: confirm files in repo
-          command: |
-              ls
+          name: Remove _site folder
+          command: rm -R _site
+      - run:
+          name: Git Status
+          command: git status
               
 workflows:
   version: 2
