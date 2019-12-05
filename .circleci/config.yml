@@ -38,11 +38,14 @@ jobs:
       - attach_workspace:
           at: ./
       - run:
-          name: Change to Compiled Site directory
-          command: cd ./_site 
+          name: Copy attached work space to home directory
+          command: cp -a ./site/. /home/circleci/repo
       - run:
-          name: List Compiled Site directory
-          command: ls
+          name: confirm files in repo
+          command: |
+              cd /home/circleci/repo
+              ls
+              
 workflows:
   version: 2
   test-deploy:
