@@ -9,6 +9,6 @@ rm -R _site/
 
 git add -fA
 git commit --allow-empty -m "$(git log develop -1 --pretty=%B)"
-git push origin prod
+git push --force origin prod
 
 echo "deployed successfully"
