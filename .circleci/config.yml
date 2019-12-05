@@ -1,54 +1,13 @@
+defaults: &defaults
+  working_directory: ~/repo
 version: 2
 jobs:
-  checkout_code:
+  build:
+    <<: *defaults
     docker:
       - image: circleci/ruby:2.5.3
-
-    working_directory: ~/repo
-
     steps:
       - checkout
-      - save_cache:
-          key: v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-          paths:
-            - ~/repo
-
-  bundle_dependencies:
-    docker:
-      - image: circleci/ruby:2.5.3
-
-    working_directory: ~/repo
-
-    steps:
-      - restore_cache:
-          keys:
-            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - v1-bundle-{{ checksum "Gemfile.lock" }}
-      - run:
-          name: install builder
-          command : |
-            gem install bundler
-      - run: bundle install --path vendor/bundle
-      - save_cache:
-          key: v1-bundle-{{ checksum "Gemfile.lock" }}
-          paths:
-            - ~/repo/vendor/bundle
-
-  precompile:
-    docker:
-      - image: circleci/ruby:2.5.3
-
-    working_directory: ~/repo
-
-    steps:
-      - restore_cache:
-          keys:
-            - v1-repo-{{ .Environment.CIRCLE_SHA1 }}
-      - restore_cache:
-          keys:
-            - v1-bundle-{{ checksum "Gemfile.lock" }}
       - run:
           name: Install Builder
           command : |
@@ -60,53 +19,51 @@ jobs:
       - run:
           name: Precompile Assets
           command: bundle exec jekyll build
-      - save_cache:
-          key: v1-assets-{{ .Environment.CIRCLE_SHA1 }}
+      - persist_to_workspace:
+          root: ./
           paths:
-            - ~/repo
-
+            - _site/
   deploy:
-    machine: true
-
-    working_directory: ~/repo
-
+    <<: *defaults
+    docker:
+      - image: circleci/python:3.6.3
     steps:
-      - restore_cache:
-          keys:
-            - v1-assets-{{ .Environment.CIRCLE_SHA1 }}
-      - run: echo ${CIRCLE_BRANCH}
+      - checkout
       - run:
-          name: Deploy build to GitHub Branch
+          name: Switch to Prod branch
+          command: git checkout prod
+      - run:
+          name: Where am I
+          command: pwd
+      - attach_workspace:
+          at: ./
+      - run:
+          name: Copy attached work space to home directory
+          command: cp -a _site/. /home/circleci/repo/
+      - run:
+          name: Remove _site folder
+          command: rm -R _site
+      - run:
+          name: Git Add and Deploy
           command: |
-              git config credential.helper 'cache --timeout=120'
-              git config user.email "nickleafs@gmail.com"
-              git config user.name "nleaf"
+              git config user.name "$GITHUB_USERNAME"
+              git config user.email "$GITHUB_EMAIL"
+              git add *
               git commit --allow-empty -m "Page release ${CIRCLE_BUILD_NUM} from ${CIRCLE_BRANCH}"
-              # Push quietly to prevent showing the token in log
-              git push -q --force https://${GITHUB_TOKEN}@github.com/nleaf/citests.git prod
-              git tag -a "release_${CIRCLE_BRANCH}_${CIRCLE_BUILD_NUM}" -m "Release based on build ${CIRCLE_BUILD_NUM}"
-              git push -q --tags https://${GITHUB_TOKEN}@github.com/nleaf/citests.git prod
-
-
+              git push --force origin prod
+              
 workflows:
   version: 2
-  build-and-deploy:
+  test-deploy:
     jobs:
-      - checkout_code:
+      - build:
           filters:
             branches:
               ignore:
-                - gh-pages
-      - bundle_dependencies:
-          requires:
-            - checkout_code
-      - precompile:
-          requires:
-            - bundle_dependencies
+                - /.*/
       - deploy:
           requires:
-            - precompile
+            - build
           filters:
             branches:
-              only:
-                - master
+              only: master

@@ -1,15 +1,14 @@
-git config user.name "$USER_NAME"
-git config user.email "$USER_EMAIL"
+git config user.name "$GITHUB_USERNAME"
+git config user.email "$GITHUB_EMAIL"
 
-git checkout master
-git pull origin master
-
+#git checkout prod
+#git pull origin prod
 find . -maxdepth 1 ! -name '_site' ! -name '.git' ! -name '.gitignore' -exec rm -rf {} \;
 mv _site/* .
 rm -R _site/
 
 git add -fA
-git commit --allow-empty -m "$(git log develop -1 --pretty=%B)"
-git push origin prod
+git commit --allow-empty -m "Page release ${CIRCLE_BUILD_NUM} from ${CIRCLE_BRANCH}"
+git push --force origin prod
 
 echo "deployed successfully"
