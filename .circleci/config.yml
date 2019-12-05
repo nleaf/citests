@@ -39,11 +39,10 @@ jobs:
           at: ./
       - run:
           name: Copy attached work space to home directory
-          command: cp -a ./site/. /home/circleci/repo
+          command: pwd
       - run:
           name: confirm files in repo
           command: |
-              cd /home/circleci/repo
               ls
               
 workflows:
