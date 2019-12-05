@@ -8,7 +8,7 @@ mv _site/* .
 rm -R _site/
 
 git add -fA
-git commit --allow-empty -m "$(git log develop -1 --pretty=%B)"
+git commit --allow-empty -m "Page release ${CIRCLE_BUILD_NUM} from ${CIRCLE_BRANCH}"
 git push --force origin prod
 
 echo "deployed successfully"
