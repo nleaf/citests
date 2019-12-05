@@ -46,6 +46,8 @@ jobs:
       - run:
           name: Git Add and Deploy
           command: |
+              git config user.name "$GITHUB_USERNAME"
+              git config user.email "$GITHUB_EMAIL"
               git add *
               git commit --allow-empty -m "Page release ${CIRCLE_BUILD_NUM} from ${CIRCLE_BRANCH}"
               git push --force origin prod
