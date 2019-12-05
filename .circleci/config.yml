@@ -28,8 +28,6 @@ jobs:
     docker:
       - image: circleci/python:3.6.3
     steps:
-      - attach_workspace:
-          at: ./
       - checkout
       - run:
           name: Switch to Prod branch
@@ -37,6 +35,8 @@ jobs:
       - run:
           name: Where am I
           command: pwd
+      - attach_workspace:
+          at: ./
 workflows:
   version: 2
   test-deploy:
