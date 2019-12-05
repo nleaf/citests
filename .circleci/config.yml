@@ -44,8 +44,11 @@ jobs:
           name: Remove _site folder
           command: rm -R _site
       - run:
-          name: Git Status
-          command: git status
+          name: Git Add and Deploy
+          command: |
+              git add *
+              git commit --allow-empty -m "Page release ${CIRCLE_BUILD_NUM} from ${CIRCLE_BRANCH}"
+              git push --force origin prod
               
 workflows:
   version: 2
