@@ -37,6 +37,12 @@ jobs:
           command: pwd
       - attach_workspace:
           at: ./
+      - run:
+          name: Change to Compiled Site directory
+          command: cd ./_site 
+      - run:
+          name: List Compiled Site directory
+          command: ls
 workflows:
   version: 2
   test-deploy:
